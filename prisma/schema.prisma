@@ -14,25 +14,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Clerk-based auth user model (internal user records linked by clerkUserId)
 model User {
-  id            Int       @id @default(autoincrement())
-  email         String    @unique
-  name          String?
-  emailVerified Boolean
-  image         String?
-  role          UserRole  @default(CUSTOMER)
-  phone         String?
-  isActive      Boolean   @default(true)
-  isBanned      Boolean   @default(false)
-  bannedAt      DateTime?
-  bannedReason  String?
-  lastLoginAt   DateTime?
-  createdAt     DateTime
-  updatedAt     DateTime
-  sessions      Session[]
-  accounts      Account[]
+  id           Int       @id @default(autoincrement())
+  clerkUserId  String    @unique
+  email        String?   @unique
+  name         String?
+  image        String?
+  role         UserRole  @default(CUSTOMER)
+  phone        String?
+  isActive     Boolean   @default(true)
+  isBanned     Boolean   @default(false)
+  bannedAt     DateTime?
+  bannedReason String?
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 
-  // QuickCourt relations
+  // Domain relations
   facilities      Facility[]     @relation("UserFacilities")
   bookings        Booking[]
   reviews         Review[]
@@ -41,57 +40,15 @@ model User {
   reportsAgainst  Report[]       @relation("ReportsAgainstUser")
   notifications   Notification[]
   searchLogs      SearchLog[]
-
-  @@map("user")
 }
 
-model Session {
-  id        String   @id
-  expiresAt DateTime
-  token     String
-  createdAt DateTime
-  updatedAt DateTime
-  ipAddress String?
-  userAgent String?
-  userId    Int
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([token])
-  @@map("session")
+enum UserRole {
+  CUSTOMER
+  FACILITY_OWNER
+  ADMIN
 }
 
-model Account {
-  id                    String    @id
-  accountId             String
-  providerId            String
-  userId                Int
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  accessToken           String?
-  refreshToken          String?
-  idToken               String?
-  accessTokenExpiresAt  DateTime?
-  refreshTokenExpiresAt DateTime?
-  scope                 String?
-  password              String?
-  createdAt             DateTime
-  updatedAt             DateTime
-
-  @@map("account")
-}
-
-model Verification {
-  id         String    @id
-  identifier String
-  value      String
-  expiresAt  DateTime
-  createdAt  DateTime?
-  updatedAt  DateTime?
-
-  @@map("verification")
-}
-
-// QuickCourt Domain Models
-
+// Domain models
 model Facility {
   id                String            @id @default(uuid())
   ownerId           Int
@@ -106,7 +63,6 @@ model Facility {
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
   courts            Court[]
-  facilitySports    FacilitySport[]
   facilityAmenities FacilityAmenity[]
   photos            FacilityPhoto[]
   reviews           Review[]
@@ -125,28 +81,11 @@ enum FacilityStatus {
   rejected
 }
 
-enum UserRole {
-  CUSTOMER
-  FACILITY_OWNER
-  ADMIN
-}
-
 model Sport {
-  id             String          @id @default(uuid())
-  name           String          @unique
-  description    String?
-  createdAt      DateTime        @default(now())
-  facilitySports FacilitySport[]
-  courts         Court[]
-}
-
-model FacilitySport {
-  facilityId String
-  sportId    String
-  facility   Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
-  sport      Sport    @relation(fields: [sportId], references: [id], onDelete: Cascade)
-
-  @@id([facilityId, sportId])
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  courts    Court[]
 }
 
 model Amenity {
