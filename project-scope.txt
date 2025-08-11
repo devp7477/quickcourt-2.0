@@ -1,0 +1,123 @@
+1 tnemetatS  melborP
+
+ QuickCourt - A Local Sports Booking
+QuickCourt is a platform that enables sports enthusiasts to book local 
+sports  facilities  (e.g.,  badminton  courts,  turf  grounds,  tennis  tables)  
+and  create  or  join  matches  with  others  in  their  area.  Your  goal  is  to  
+build a full-stack web application that facilitates this end-to-end expe-
+rience,  ensuring  a  smooth  user  experience,  booking  accuracy,  and  
+community engagement.
+○ Popular venues
+○ Popular sports
+○ Venue Name
+○ Sport Type(s)
+○ Starting Price per hour
+○ Short Location
+○ Rating (if reviews implemented)
+Filters: sport type, price, venue type, rating
+Pagination
+Each card displays:
+Welcome banner or carousel
+Quick access to:
+Home Page
+List of all approved sports venues
+Search for a venue
+Venues Page
+○ Name, description, address
+○ List of Sports available
+○ Amenities
+○ About Venue
+○ Photo gallery
+○ Reviews section
+Full details of the selected venue:
+Action: Book Now button
+Single Venue Page
+ 
+Tabs: My Bookings
+Select court and time slot
+View price and total
+Proceed to confirm and simulate payment
+After success, redirect to "My Bookings"
+Court Booking Page
+Display user details: Name, Email
+Allow edit/update info
+Profile Page
+○ Venue name, sport type, court name
+○ Date and time of booking
+○ Status: Confirmed / Cancelled / Completed
+○ Action: Cancel button (if in the future)
+○ Total Bookings
+○ Active Courts
+○ Earnings (simulated)
+○ Booking Calendar
+List of all court bookings
+Each booking card shows:
+Optional: Filters by date or status 
+My Bookings Page
+Welcome message and KPIs:
+○ Daily/Weekly/Monthly Booking Trends (Line/Bar Chart)
+○ Earnings Summary (Bar or Doughnut Chart)
+○ Peak Booking Hours (Heatmap or Area Chart)
+Charts to implement:
+Facility Owner RoleFeatures & Functionalities
+Dashboard
+ 
+○ Name, location, description
+○ Type of sports supported
+○ User name, court, time
+○ Status: Booked / Cancelled / Completed
+○ Amenities offered
+○ Upload multiple photos
+Add/Edit facility details:
+○ Court name, sport type
+○ Pricing per hour
+○ Operating hours
+Court Management Page:
+Edit/delete existing courts
+Facility Management Page
+Set availability for each court
+Block time slots for maintenance
+Time Slot Management
+View upcoming and past bookings
+Each record shows:
+Booking Overview Page
+Display owner details
+Allow edit/update info
+Profile Page
+○ Total users
+Total facility owners
+Total bookings
+Total active courts
+○
+○
+○
+Global stats overview:
+○ Booking Activity Over Time (Line or Bar Chart)
+User Registration Trends
+Facility Approval Trend
+Most Active Sports
+Earnings Simulation Chart
+○
+○
+Charts to implement:
+Admin RoleFeatures & Functionalities
+Dashboard
+View list of pending facility registrations
+Approve or reject with optional comments
+See submitted facility details and photos
+Facility Approval Page
+List of all users and facility owners
+Search and filter by role or status
+Actions:
+User Management Page
+View reports submitted by users
+Take action on flagged facilities or users
+Reports & Moderation Page (Optional)
+○
+○
+○ Ban/unban user
+View user booking history○
+Display admin profile
+Allow basic info update
+Profile Page
+mockups: https://link.excalidraw.com/l/65VNwvy7c4X/AU4FuaybEgm
